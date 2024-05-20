@@ -1,0 +1,9 @@
+<section class="post-list-container">
+  <ng-container *ngFor="let post of posts">
+    <section class="post-list-card">
+      <h3 class="post-list-title">{{ post.title }}</h3>
+
+      <p class="post-list-body">{{ post.body }}</p>
+    </section>
+  </ng-container>
+</section>

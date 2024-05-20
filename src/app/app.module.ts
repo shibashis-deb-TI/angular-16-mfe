@@ -3,16 +3,26 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { createCustomElement } from '@angular/elements';
+import { PostsComponent } from './posts/posts.component';
+import { PostService } from './posts/services/posts.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
-  declarations: [AppComponent],
-  imports: [BrowserModule],
-  providers: [],
+  declarations: [AppComponent, PostsComponent],
+  imports: [BrowserModule, HttpClientModule],
+  providers: [PostService],
   bootstrap: [AppComponent],
 })
 export class AppModule {
   constructor(private injector: Injector) {
-    const ce = createCustomElement(AppComponent, { injector: this.injector });
-    customElements.define('home-element', ce);
+    const appEl = createCustomElement(AppComponent, {
+      injector: this.injector,
+    });
+    customElements.define('app-element', appEl);
+
+    const postEl = createCustomElement(PostsComponent, {
+      injector: this.injector,
+    });
+    customElements.define('post-element', postEl);
   }
 }
