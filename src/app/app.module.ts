@@ -8,12 +8,10 @@ import { createCustomElement } from '@angular/elements';
   declarations: [AppComponent],
   imports: [BrowserModule],
   providers: [],
-  bootstrap: [],
+  bootstrap: [AppComponent],
 })
-export class AppModule implements DoBootstrap {
-  constructor(private injector: Injector) {}
-
-  ngDoBootstrap() {
+export class AppModule {
+  constructor(private injector: Injector) {
     const ce = createCustomElement(AppComponent, { injector: this.injector });
     customElements.define('home-element', ce);
   }
